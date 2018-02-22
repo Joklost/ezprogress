@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='ezprogress',
-    version='1.0.0',
+    version='1.0.1',
     description='Simple, easy to use progress bar.',
     author='Jonas Kloster Jacobsen',
     author_email='joklost@gmail.com',
