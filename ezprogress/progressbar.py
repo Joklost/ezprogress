@@ -13,6 +13,14 @@ class ProgressBar(object):
         """
         Simple progress bar.
 
+        >>> from ezprogress.progressbar import ProgressBar
+        >>> pb = ProgressBar(total=100, title='Progress')
+        >>> pb.start()
+        >>> for i in range(0, 100):
+        >>>     pb.update(i)
+        >>>     do_stuff(i)
+        >>> pb.finished()
+
         :param total: Total amount of iterations.
         :param title: To be printed on a line before the progressbar.
         :param precision: Number of % decimals to print.

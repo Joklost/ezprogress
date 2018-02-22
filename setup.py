@@ -8,5 +8,6 @@ setuptools.setup(
     author_email='joklost@gmail.com',
     license='GNU',
     packages=['ezprogress'],
+    url='https://github.com/Joklost/ezprogress',
     zip_safe=False
 )
