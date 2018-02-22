@@ -9,7 +9,8 @@ class StartException(Exception):
 
 class ProgressBar(object):
 
-    def __init__(self, total: int, title: str = "", precision: int = 1, bar_length: int = 100, auto_start: bool = False):
+    def __init__(self, total: int, title: str = "", precision: int = 1, bar_length: int = 100,
+                 auto_start: bool = False):
         """
         Simple progress bar.
 
@@ -36,6 +37,7 @@ class ProgressBar(object):
             self.start()
 
     def start(self):
+        """Start the ProgressBar by setting self._start_time to datetime.utcnow()."""
         if self._start_time:
             raise StartException()
 
@@ -45,10 +47,17 @@ class ProgressBar(object):
         self._start_time = datetime.datetime.utcnow()
         self._print(0, self._start_time)
 
+    def restart(self):
+        """Reset the self._start_time, and start the ProgressBar."""
+        self._start_time = None
+        self.start()
+
     def finished(self):
+        """Call the update method with iteration=self._total"""
         self.update(self._total)
 
     def update(self, iteration: int):
+        """Prints the ProgressBar"""
         if not self._start_time:
             raise StartException()
 
@@ -58,19 +67,16 @@ class ProgressBar(object):
         delta = time - self._start_time
         percent_value = 100 * (iteration / float(self._total))
 
-        if percent_value:
-            time_remaining = ((100 - percent_value) / percent_value) * delta
-        else:
-            time_remaining = datetime.timedelta(seconds=1)
+        time_remaining = ((100 - percent_value) / percent_value) * delta \
+            if percent_value else datetime.timedelta(seconds=1)
 
         filled_length = int(round(self._bar_length * iteration / float(self._total)))
         bar = '█' * filled_length + '-' * (self._bar_length - filled_length)
 
-        time_string = f'EST: {str(time_remaining).split(".")[0]}'
+        time_string = f'EST: {str(time_remaining).split(".")[0]}' if iteration != self._total else '                   '
         sys.stdout.write(
-            f'\r[{bar}] {percent_value:.{self._decimals}f} % {time_string if iteration != self._total else ""}'
+            f'\r[{bar}] {percent_value:.{self._decimals}f} % {time_string }'
         )
         if iteration == self._total:
             sys.stdout.write('\n')
         sys.stdout.flush()
-
