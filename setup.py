@@ -1,13 +1,14 @@
-import setuptools
+import distutils.core
 
-setuptools.setup(
+distutils.core.setup(
     name='ezprogress',
-    version='1.0.2',
+    version='1.0.3',
     description='Simple, easy to use progress bar.',
+    long_description=open('README.rst', 'r').read(),
     author='Jonas Kloster Jacobsen',
     author_email='joklost@gmail.com',
     license='MIT',
-    packages=['ezprogress'],
+    py_modules=['ezprogress'],
     url='https://github.com/Joklost/ezprogress',
     python_requires='>=3.6',
     zip_safe=False
