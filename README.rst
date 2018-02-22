@@ -1,8 +1,5 @@
 Simple, easy to use progress bar for Python.
 
-Example
--------
-
 .. code-block:: python
   
   >>> from ezprogress.progressbar import ProgressBar
