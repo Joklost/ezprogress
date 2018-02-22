@@ -1,5 +1,13 @@
+ezprogress
+----------
 Simple, easy to use progress bar for Python.
 
+Installation
+^^^^^^^^^^^^
+``$ pip3 install ezprogress``
+
+Usage
+^^^^^
 .. code:: python
 
     >>> from ezprogress.progressbar import ProgressBar
