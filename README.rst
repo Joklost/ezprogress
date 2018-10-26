@@ -1,6 +1,6 @@
 ezprogress
 ----------
-Simple, easy to use progress bar for Python.
+Simple, easy to use progress bar for Python 3.6+.
 
 Installation
 ^^^^^^^^^^^^
