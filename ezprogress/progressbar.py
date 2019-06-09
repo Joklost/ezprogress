@@ -10,7 +10,7 @@ class StartException(Exception):
 class ProgressBar(object):
 
     def __init__(self, total: int, title: str = "", precision: int = 1, bar_length: int = 100,
-                 auto_start: bool = False):
+                 auto_start: bool = False, no_time: bool = False):
         """
         Simple progress bar.
 
@@ -27,12 +27,14 @@ class ProgressBar(object):
         :param precision: Number of % decimals to print.
         :param bar_length: Length of ProgressBar.
         :param auto_start: Immediately start the ProgressBar.
+        :param time_off: Turn off estimated time
         """
         self._bar_length = bar_length
         self._decimals = precision
         self._title = title
         self._total = total
         self._start_time = None
+        self.no_time = no_time
         if auto_start:
             self.start()
 
@@ -73,7 +75,10 @@ class ProgressBar(object):
         filled_length = int(round(self._bar_length * iteration / float(self._total)))
         bar = '█' * filled_length + '-' * (self._bar_length - filled_length)
 
-        time_string = f'EST: {str(time_remaining).split(".")[0]}' if iteration != self._total else '                   '
+        if not self.no_time:
+            time_string = f'EST: {str(time_remaining).split(".")[0]}' if iteration != self._total else '                   '
+        else:
+            time_string = ''
         sys.stdout.write(
             f'\r[{bar}] {percent_value:.{self._decimals}f} % {time_string }'
         )
