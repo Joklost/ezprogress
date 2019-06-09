@@ -2,7 +2,7 @@ import distutils.core
 
 distutils.core.setup(
     name='ezprogress',
-    version='1.0.3',
+    version='1.0.4',
     description='Simple, easy to use progress bar.',
     long_description=open('README.rst', 'r').read(),
     author='Jonas Kloster Jacobsen',
